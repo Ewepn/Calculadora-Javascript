@@ -1,5 +1,7 @@
 *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 html{
@@ -13,40 +15,44 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
-    padding: 0;
     background-color: rgb(31, 10, 65);
 }
 
-button{
-    border-radius: 0.4rem;
-    background-color: rgb(253, 253, 253);
-    border: 2px solid rgb(31, 10, 65);
-    font-size: 2rem;
+table td{
+    display: inline-block;
+}
+
+.container{
+    background-color: rgba(0, 0, 0, 0.438);
+    padding: 15px;
+    border-radius: 15px;
 }
 
 .display{
-    border: 2px solid rgb(31, 10, 65);
+    border: 1px solid rgb(31, 10, 65);
     padding: 20px;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     align-items: flex-end;
-    font-size: 2rem;
-    color: rgba(240, 248, 255, 0.81);
-    grid-column: 1/-1;
+    font-size: 1.5rem;
+    color: rgba(240, 248, 255, 0.945);
     background-color: rgb(0, 0, 0, 0.45);
 }
 
-.container{
-    display: grid;
-    grid-template-columns: repeat(3 , 100px);
+.button-bt{
+    margin: 4px;
+    width: 61px;
+    height: 50px; 
+    cursor: pointer;
+    font-size: medium;
+    background-color: rgb(30, 7, 82);
+    border: none;
+    color: rgba(240, 248, 255, 0.945);
+    font-size: 1.5rem;
+    transition: all 400ms ease-in-out;
 }
 
-.resultado{
-    grid-column: span 3;
-}
-
-.deletar{
-    grid-column: span 2;
+.button-bt:hover{
+    background-color: rgba(0, 0, 0, 0.438);
 }
