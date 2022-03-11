@@ -9,36 +9,36 @@
     <link rel="stylesheet" href="calc.css">
 </head>
 <body>
-    <div class="container">
-        <div class="display">Display</div>
+    <div class="container">   
         <table class="calculadora">
+            <div class="display" id="display">Display</div>
             <tr>
-                <td><button class="button-bt" id="limpar">C</button></td>
-                <td><button class="button-bt" id="apagar" style="width: 130px;"><i class="fa-solid fa-delete-left"></i></button></td>
-                <td><button class="button-bt" id="divisao"><i class="fa-solid fa-divide"></i></button></td>
+                <td><button class="button-bt" id="limpar" onclick="limpar()">C</button></td>
+                <td><button class="button-bt" id="apagar" style="width: 130px;" onclick="apagar()"><i class="fa-solid fa-delete-left"></i></button></td>
+                <td><button class="button-bt" id="divisao" onclick="insert('/')"><i class="fa-solid fa-divide"></i></button></td>
             </tr>  
             <tr>
-                <td><button class="button-bt">7</button></td>
-                <td><button class="button-bt">8</button></td>
-                <td><button class="button-bt">9</button></td>
-                <td><button class="button-bt" id="multiplica">x</button></td>
+                <td><button class="button-bt" onclick="insert('7')">7</button></td>
+                <td><button class="button-bt" onclick="insert('8')">8</button></td>
+                <td><button class="button-bt" onclick="insert('9')">9</button></td>
+                <td><button class="button-bt" id="multiplica" onclick="insert('*')">x</button></td>
             </tr>
             <tr>
-                <td><button class="button-bt">4</button></td>
-                <td><button class="button-bt">5</button></td>
-                <td><button class="button-bt">6</button></td>
-                <td><button class="button-bt" id="subtrai">-</button></td>
+                <td><button class="button-bt" onclick="insert('4')">4</button></td>
+                <td><button class="button-bt" onclick="insert('5')">5</button></td>
+                <td><button class="button-bt" onclick="insert('6')">6</button></td>
+                <td><button class="button-bt" id="subtrai" onclick="insert('-')">-</button></td>
             </tr>
             <tr>
-                <td><button class="button-bt">1</button></td>
-                <td><button class="button-bt">2</button></td>
-                <td><button class="button-bt">3</button></td>
-                <td><button class="button-bt" id="soma">+</button></td>
+                <td><button class="button-bt" onclick="insert('1')">1</button></td>
+                <td><button class="button-bt" onclick="insert('2')">2</button></td>
+                <td><button class="button-bt" onclick="insert('3')">3</button></td>
+                <td><button class="button-bt" id="soma" onclick="insert('+')">+</button></td>
             </tr>
             <tr>
-                <td><button class="button-bt" id="ponto">.</button></td>
-                <td><button class="button-bt">0</button></td>
-                <td><button class="button-bt" id="resultado" style="width: 130px;">=</button></td>
+                <td><button class="button-bt" id="ponto" onclick="insert('.')">.</button></td>
+                <td><button class="button-bt" onclick="insert('0')">0</button></td>
+                <td><button class="button-bt" id="resultado" style="width: 130px;" onclick="igual()">=</button></td>
             </tr>                        
         </table>
     </div>
