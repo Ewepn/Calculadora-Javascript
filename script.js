@@ -14,13 +14,16 @@ class Calculator {
     }
 
     clear() {
-        if(this.newTextDisplayPrimary !== '' & this.newTextDisplaySecundary == ''){ //limpar o display após exibir o resultado e clicar em um novo número! 
-            this.newTextDisplayPrimary = '';
-        }
+        //limpar o display após exibir o resultado e clicar em um novo número!
+        if(this.newTextDisplayPrimary !== '' & this.newTextDisplaySecundary == '') this.newTextDisplayPrimary = '';
 
         this.newTextDisplayPrimary = '';
         this.newTextDisplaySecundary = '';
         this.operation = undefined;
+    }
+
+    delete() {
+        this.newTextDisplayPrimary = this.newTextDisplayPrimary.slice(0, -1);
     }
 
     changeDisplay() {
@@ -30,13 +33,12 @@ class Calculator {
 
     numbersValues(number){
         if(this.newTextDisplayPrimary.includes('.') & number == '.') return; //não permitir um número ter mais de um ponto flutuante
-        this.newTextDisplayPrimary = `${this.newTextDisplayPrimary}${number.toString()}`;
+        this.newTextDisplayPrimary = `${this.newTextDisplayPrimary}${number}`;
     }
 
     selectOperation(operation){
-        if(this.newTextDisplaySecundary !== ''){
-            this.calculate();
-        }
+        if(this.newTextDisplayPrimary == '') return; // se o display estiver limpo não é adicionado um operador 
+        if(this.newTextDisplaySecundary !== '') this.calculate();
 
         this.operation = operation;
         this.newTextDisplaySecundary = this.newTextDisplayPrimary;
@@ -76,12 +78,12 @@ class Calculator {
 
 const calc = new Calculator(textDisplayPrimary, textDisplaySecundary); //passando os parâmetros para a class
 
-displayClear.addEventListener('click', () =>{ //funcção de Limpar o display
+displayClear.addEventListener('click', () =>{ //função de Limpar o display
     calc.clear();
     calc.changeDisplay();
 });
 
-displayResult.addEventListener('click', () => {
+displayResult.addEventListener('click', () =>{ //função do botão 'igual'
     calc.calculate();
     calc.changeDisplay();
     calc.clear();
@@ -94,9 +96,14 @@ for (const displayButton of displayButtons) { //função de adicionar o número 
     });
 }
 
-for (const operations of displayOperation){
+for (const operations of displayOperation){ //função dos operadores 
     operations.addEventListener('click', () =>{
         calc.selectOperation(operations.innerHTML);
         calc.changeDisplay();
     });
 }
+
+displayDelete.addEventListener('click', () =>{ //função de deletar
+    calc.delete();
+    calc.changeDisplay();
+});
