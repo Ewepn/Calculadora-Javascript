@@ -15,7 +15,7 @@ class Calculator {
 
     clear() {
         //limpar o display após exibir o resultado e clicar em um novo número!
-        if(this.newTextDisplayPrimary !== '' & this.newTextDisplaySecundary == '') this.newTextDisplayPrimary = '';
+        if(this.newTextDisplayPrimary !== '' & this.newTextDisplaySecundary === '') this.newTextDisplayPrimary = '';
 
         this.newTextDisplayPrimary = '';
         this.newTextDisplaySecundary = '';
@@ -26,18 +26,40 @@ class Calculator {
         this.newTextDisplayPrimary = this.newTextDisplayPrimary.slice(0, -1);
     }
 
+    formatDisplay(number) {
+        const convertString = number.toString();
+        const intNumber = parseFloat(convertString.split('.')[0]);
+        const decimalNumber = convertString.split('.')[1];
+
+        let intDisplay;
+
+        if(isNaN(intNumber)){
+            intDisplay = '';
+        }else{
+            intDisplay = intNumber.toLocaleString('en', {
+                maximumFractionDigits: 0
+            });
+        }
+
+        if(decimalNumber != null){ //se o decimal for diferente de vazio é adicionado um '.' (ponto) após o inteiro 
+            return `${intDisplay}.${decimalNumber}`;
+        }else{
+            return intDisplay;
+        }
+    }
+
     changeDisplay() {
-        this.textDisplayPrimary.innerHTML = this.newTextDisplayPrimary;
-        this.textDisplaySecundary.innerHTML = `${this.newTextDisplaySecundary}${this.operation || ''}`;
+        this.textDisplayPrimary.innerHTML = this.formatDisplay(this.newTextDisplayPrimary);
+        this.textDisplaySecundary.innerHTML = `${this.formatDisplay(this.newTextDisplaySecundary)}${this.operation || ''}`;
     }
 
     numbersValues(number){
-        if(this.newTextDisplayPrimary.includes('.') & number == '.') return; //não permitir um número ter mais de um ponto flutuante
+        if(this.newTextDisplayPrimary.includes('.') & number === '.') return; //não permitir um número ter mais de um ponto flutuante
         this.newTextDisplayPrimary = `${this.newTextDisplayPrimary}${number}`;
     }
 
     selectOperation(operation){
-        if(this.newTextDisplayPrimary == '') return; // se o display estiver limpo não é adicionado um operador 
+        if(this.newTextDisplayPrimary === '') return; // se o display estiver limpo não é adicionado um operador 
         if(this.newTextDisplaySecundary !== '') this.calculate();
 
         this.operation = operation;
